@@ -1,0 +1,9 @@
+chose a faire :
+mettre un temps sur les msg 
+gerer les erreur 500, 405, 400 et mettre leur status code;
+filtrer les utilissateur en  fonction de qui a envoyé en dernier un msg
+ne pas envoyer un msg a quelqu'un qui n'est pas encore connecté
+les messages vides sonr a gerer
+gerer le probleme d'expiration de session
+
+bien evidemenent qe 
