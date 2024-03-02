@@ -1191,7 +1191,7 @@ const ChatBox = (Client, MyUsername) => {
     document.getElementById("Id" + Client).addEventListener("click", function (event) {
         SendData2(Client, MyUsername);
     })
-    document.getElementById("msginput" + Client).addEventListener("keyup", function (event) {
+    document.getElementById("msginput" + Client).addEventListener("keydown",  function (event) {
         typing(socket, newUser.Nickname, Client)
     })
 
@@ -1317,8 +1317,11 @@ function MsgNotSee(Client) {
 }
 
 const LoadData = async (data) => {
-    if (data.Receiver == newUser.Nickname){
-        TypeRealTime(data)
+    if (data.Receiver != null){
+        if (data.Receiver == newUser.Nickname){
+            TypeRealTime(data)
+            return
+        }
         return
     }
     var allpost = data.Posts
@@ -1952,6 +1955,15 @@ var idTyping=null;
         typing.textContent = ""
         typing.textContent = `${data.Sender}${data.Msg}`
     }
+    var contentMsg = document.getElementById("divMsgInput" + clients)
+    if (contentMsg != null){
+        if (clients== data.Sender){
+        let typingchat = document.getElementById("typingchat")
+        if (typingchat==null){
+            animationMessage(contentMsg)
+        }
+       } 
+    }
     idTyping = setTimeout(() => {
         if (typing != null) {
             typing.textContent = ""
@@ -1959,5 +1971,28 @@ var idTyping=null;
             var lenMsg = document.getElementById(`lenMsg${data.Sender}`);
             lenMsg.style.display = "block"
         }
+    }, 1000);
+}
+
+const animationMessage=(chat)=>{
+    // Création des éléments
+    const typingAnimation = document.createElement('div');
+    typingAnimation.id="typingchat"
+    typingAnimation.classList.add('typing-animation');
+
+    for (let i = 0; i < 3; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    typingAnimation.appendChild(dot);
+    }
+
+    // Ajout de l'animation au corps du document
+    chat.appendChild(typingAnimation);
+    setTimeout(() => {
+       let divtyping= document.getElementById("typingchat")
+       if (divtyping!=null){
+        var parent = divtyping.parentNode;
+        parent.removeChild(divtyping);
+       }
     }, 1000);
 }
