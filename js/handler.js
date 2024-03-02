@@ -55,9 +55,9 @@ const fetchCookies = (user) => {
     dataJson.Object = "SessionExpired"
     dataJson.Data = user
     fetch("/", {
-            method: "POST",
-            body: JSON.stringify(dataJson)
-        })
+        method: "POST",
+        body: JSON.stringify(dataJson)
+    })
         .then(response => response.json())
         .then(data => {
             SendData();
@@ -91,9 +91,9 @@ const Decon = () => {
     deconStruct.Data = newUser
 
     fetch("/", {
-            method: "POST",
-            body: JSON.stringify(deconStruct),
-        })
+        method: "POST",
+        body: JSON.stringify(deconStruct),
+    })
         .then(response => response.json())
         .then(data => {
             // Gère la réponse du serveur
@@ -115,7 +115,7 @@ const IdLikePost = (Id) => {
 
 const AddComment = (Id) => {
     currentId = Id;
-    document.getElementById(`CommentForm ${currentId}`).addEventListener("submit", function(event) {
+    document.getElementById(`CommentForm ${currentId}`).addEventListener("submit", function (event) {
         event.preventDefault();
         var comment = document.getElementsByName(`Comment ${currentId}`)[0];
         var commentId = currentId;
@@ -127,9 +127,9 @@ const AddComment = (Id) => {
         newDataJSON.Data = newCom
         comment.value = ""
         fetch("/", {
-                method: "POST",
-                body: JSON.stringify(newDataJSON),
-            })
+            method: "POST",
+            body: JSON.stringify(newDataJSON),
+        })
             .then(response => response.json())
             .then(data => {
                 // Gère la réponse du serveur
@@ -159,7 +159,7 @@ const AddComment = (Id) => {
 
 const LikePOst = (Id) => {
     currentId = Id
-        // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
+    // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
     var like_PostId = currentId.toString()
 
     var newLike = LikePost
@@ -170,15 +170,15 @@ const LikePOst = (Id) => {
     newDataJSON.Data = newLike
 
     fetch("/", {
-            method: "POST",
-            body: JSON.stringify(newDataJSON),
-        })
+        method: "POST",
+        body: JSON.stringify(newDataJSON),
+    })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
             SendData()
-                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-                //document.getElementById("likesCount").innerText = data.likes.toString();
+            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+            //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -191,7 +191,7 @@ const LikePOst = (Id) => {
 
 const LikeCom = (Id) => {
     currentId = Id
-        // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
+    // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
     var like_ComId = currentId.toString()
 
     var newLike = LikeComs
@@ -202,15 +202,15 @@ const LikeCom = (Id) => {
     newDataJSON.Data = newLike
 
     fetch("/", {
-            method: "POST",
-            body: JSON.stringify(newDataJSON),
-        })
+        method: "POST",
+        body: JSON.stringify(newDataJSON),
+    })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
             SendData()
-                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-                //document.getElementById("likesCount").innerText = data.likes.toString();
+            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+            //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -223,7 +223,7 @@ const LikeCom = (Id) => {
 
 const DisLikeCom = (Id) => {
     currentId = Id
-        // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
+    // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
     var like_ComId = currentId.toString()
 
     var newLike = LikeComs
@@ -234,16 +234,16 @@ const DisLikeCom = (Id) => {
     newDataJSON.Data = newLike
 
     fetch("/", {
-            method: "POST",
-            body: JSON.stringify(newDataJSON),
-        })
+        method: "POST",
+        body: JSON.stringify(newDataJSON),
+    })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
 
             SendData()
-                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-                //document.getElementById("likesCount").innerText = data.likes.toString();
+            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+            //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -266,15 +266,15 @@ const DisLikePOst = (Id) => {
     newDataJSON.Data = newDisLike
 
     fetch("/", {
-            method: "POST",
-            body: JSON.stringify(newDataJSON),
-        })
+        method: "POST",
+        body: JSON.stringify(newDataJSON),
+    })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
             SendData()
-                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-                //document.getElementById("likesCount").innerText = data.likes.toString();
+            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+            //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -358,71 +358,71 @@ function ListUser(abcUser, lastuser) {
     return newTab
 }
 
-const NewPage = async(data) => {
-        Allpost = data.Posts
-        mysession = getCookie("session")
-        currentPage = "index"
-        Allsessions = data.Allsessions
-        myMsg = data.MyMsg
-            //info user
-        newUser.Id = getUser(data.Allsessions).Id;
-        newUser.Username = getUser(data.Allsessions).Username;
-        newUser.Lastname = getUser(data.Allsessions).Lastname;
-        newUser.Nickname = getUser(data.Allsessions).Nickname;
-        newUser.Age = getUser(data.Allsessions).Age;
-        newUser.Genre = getUser(data.Allsessions).Genre;
-        newUser.Mdp = getUser(data.Allsessions).Mdp;
-        newUser.Email = getUser(data.Allsessions).Email;
-        newUser.Actif = getUser(data.Allsessions).Actif;
-        newUser.Role = getUser(data.Allsessions).Role;
-        newUser.Error = getUser(data.Allsessions).Error;
-        var userConn = data.Users
-        var noms = Tri(data.Users)
-        data.Users = noms
-        let userg = data.MyMsg
-        if (userg != null) {
-            var trienoms = TriByFirstMsg(newUser, data.MyMsg)
-            userConn = ListUser(noms, trienoms)
-        }
-        const index = userConn.findIndex(user => user.Nickname === newUser.Nickname);
-        if (index !== -1) {
-            userConn.splice(index, 1);
-        }
-        //init All param
+const NewPage = async (data) => {
+    Allpost = data.Posts
+    mysession = getCookie("session")
+    currentPage = "index"
+    Allsessions = data.Allsessions
+    myMsg = data.MyMsg
+    //info user
+    newUser.Id = getUser(data.Allsessions).Id;
+    newUser.Username = getUser(data.Allsessions).Username;
+    newUser.Lastname = getUser(data.Allsessions).Lastname;
+    newUser.Nickname = getUser(data.Allsessions).Nickname;
+    newUser.Age = getUser(data.Allsessions).Age;
+    newUser.Genre = getUser(data.Allsessions).Genre;
+    newUser.Mdp = getUser(data.Allsessions).Mdp;
+    newUser.Email = getUser(data.Allsessions).Email;
+    newUser.Actif = getUser(data.Allsessions).Actif;
+    newUser.Role = getUser(data.Allsessions).Role;
+    newUser.Error = getUser(data.Allsessions).Error;
+    var userConn = data.Users
+    var noms = Tri(data.Users)
+    data.Users = noms
+    let userg = data.MyMsg
+    if (userg != null) {
+        var trienoms = TriByFirstMsg(newUser, data.MyMsg)
+        userConn = ListUser(noms, trienoms)
+    }
+    const index = userConn.findIndex(user => user.Nickname === newUser.Nickname);
+    if (index !== -1) {
+        userConn.splice(index, 1);
+    }
+    //init All param
 
-        var hidden = "";
-        var Mylike = "";
-        var isConnected = "";
-        var NbrLike = 0;
-        var NbrPost = 0;
-        var NbrCom = 0;
-        //Verifier si la taille de l'utilisateur est null ou non
-        if (newUser.Username.length == 0) {
-            hidden = "hidden";
-            Mylike = "hidden"
-        }
+    var hidden = "";
+    var Mylike = "";
+    var isConnected = "";
+    var NbrLike = 0;
+    var NbrPost = 0;
+    var NbrCom = 0;
+    //Verifier si la taille de l'utilisateur est null ou non
+    if (newUser.Username.length == 0) {
+        hidden = "hidden";
+        Mylike = "hidden"
+    }
 
-        //Verifier si la taille de Isconnected est null ou non
-        if (newUser.Username.length > 0) {
-            isConnected = "hidden";
-        }
-        if (data.Mylike != null) {
-            NbrLike = data.Mylike.length
-        }
-        if (data.MyCom != null) {
-            NbrCom = data.MyCom.length
-        }
-        if (data.MyPost != null) {
-            NbrPost = data.MyPost.length
-        }
-        var oldSection = document.querySelector("body > section");
-        if (oldSection !== null) {
-            oldSection.remove();
-            closeChatBox()
-        }
+    //Verifier si la taille de Isconnected est null ou non
+    if (newUser.Username.length > 0) {
+        isConnected = "hidden";
+    }
+    if (data.Mylike != null) {
+        NbrLike = data.Mylike.length
+    }
+    if (data.MyCom != null) {
+        NbrCom = data.MyCom.length
+    }
+    if (data.MyPost != null) {
+        NbrPost = data.MyPost.length
+    }
+    var oldSection = document.querySelector("body > section");
+    if (oldSection !== null) {
+        oldSection.remove();
+        closeChatBox()
+    }
 
-        var section = document.createElement("section")
-        section.innerHTML = `
+    var section = document.createElement("section")
+    section.innerHTML = `
         <nav>
         <div class="container">
             <a id="update">
@@ -1191,7 +1191,7 @@ const ChatBox = (Client, MyUsername) => {
     document.getElementById("Id" + Client).addEventListener("click", function (event) {
         SendData2(Client, MyUsername);
     })
-    document.getElementById("msginput" + Client).addEventListener("keydown",  function (event) {
+    document.getElementById("msginput" + Client).addEventListener("keydown", function (event) {
         typing(socket, newUser.Nickname, Client)
     })
 
@@ -1297,6 +1297,7 @@ const throttle = (func, delay) => {
 
 // Utilisation de la fonction throttle avec un délai de 500 millisecondes
 const throttledLoadNewMessages = throttle(loadNewMessages, 2000);
+// const throttleLoadTyping = throttle(TypeRealTime, 3000);
 
 function MsgNotSee(Client) {
     var nmbrMsg = 0
@@ -1317,8 +1318,8 @@ function MsgNotSee(Client) {
 }
 
 const LoadData = async (data) => {
-    if (data.Receiver != null){
-        if (data.Receiver == newUser.Nickname){
+    if (data.Receiver != null) {
+        if (data.Receiver == newUser.Nickname) {
             TypeRealTime(data)
             return
         }
@@ -1344,7 +1345,7 @@ const LoadData = async (data) => {
             var backgroundColor = user.Actif === 'true' ? 'green' : '#858785';
             return `<h1 onclick="ChatBox('${user.Nickname}', '${newUser.Nickname}')" > <img src="/static/images/avatar.jpeg" width="38" height="38" style="border-radius: 50%; cursor: pointer;" alt="" > <span id="profil" width="20" style="color: #070606;bottom: 12px; ">
                                ${user.Nickname} </h1> <div class="numero" id="typing${user.Nickname}"></div> <div class="numero" id="lenMsg${user.Nickname}"></div> <div id="ligne" style=" height: 12px; width: 6%; border-radius: 6px; background-color: ${backgroundColor};"></div></span>`
-          }).join('<br/>')}`;
+        }).join('<br/>')}`;
     }
 
     //msg
@@ -1421,14 +1422,14 @@ const LoadData = async (data) => {
     if (likePost.length != 0) {
         likePost.forEach((e, i) => {
             let id = e.getAttribute('value')
-            tablikePost.push(allpost[(allpost.length-1) - (id - 1)])
+            tablikePost.push(allpost[(allpost.length - 1) - (id - 1)])
         })
     }
 
     if (dislikePost.length != 0) {
         dislikePost.forEach((e, i) => {
             let id = e.getAttribute('value')
-            tabDislikePost.push(allpost[(allpost.length-1) - (id - 1)])
+            tabDislikePost.push(allpost[(allpost.length - 1) - (id - 1)])
         })
     }
     if (likePost.length != 0) {
@@ -1934,7 +1935,7 @@ const typingStruct = {
     receiver: "",
     msg: "",
 }
- const typing = async (socket, sender, receiver) => {
+const typing = async (socket, sender, receiver) => {
     var currentTyping = typingStruct;
     currentTyping.sender = sender;
     currentTyping.receiver = receiver;
@@ -1942,57 +1943,60 @@ const typingStruct = {
     socket.send(JSON.stringify(currentTyping))
 }
 
-var idTyping=null;
+var idTyping = null;
 
- const TypeRealTime = async (data) => {
+const TypeRealTime = async (data) => {
     if (idTyping != null) {
         clearTimeout(idTyping)
     }
     let test2 = document.getElementById(`lenMsg${data.Sender}`);
+    var typing = document.getElementById(`typing${data.Sender}`);
     if (test2 != null) {
         test2.style.display = "none"
-        var typing = document.getElementById(`typing${data.Sender}`);
         typing.textContent = ""
         typing.textContent = `${data.Sender}${data.Msg}`
     }
     var contentMsg = document.getElementById("divMsgInput" + clients)
-    if (contentMsg != null){
-        if (clients== data.Sender){
-        let typingchat = document.getElementById("typingchat")
-        if (typingchat==null){
-            animationMessage(contentMsg)
+    if (contentMsg != null) {
+        if (clients == data.Sender) {
+            let typingchat = document.getElementById("typingchat")
+            if (typingchat == null) {
+                animationMessage(contentMsg)
+            }
         }
-       } 
     }
     idTyping = setTimeout(() => {
         if (typing != null) {
             typing.textContent = ""
-                //afficher le nbr de msg
+            //afficher le nbr de msg
             var lenMsg = document.getElementById(`lenMsg${data.Sender}`);
             lenMsg.style.display = "block"
+            idTyping = null
+            console.log("je suis dans le settimeout");
         }
-    }, 1000);
+    }, 3000);
 }
 
-const animationMessage=(chat)=>{
+const animationMessage = (chat) => {
     // Création des éléments
     const typingAnimation = document.createElement('div');
-    typingAnimation.id="typingchat"
+    typingAnimation.id = "typingchat"
     typingAnimation.classList.add('typing-animation');
 
     for (let i = 0; i < 3; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    typingAnimation.appendChild(dot);
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        typingAnimation.appendChild(dot);
     }
 
     // Ajout de l'animation au corps du document
     chat.appendChild(typingAnimation);
     setTimeout(() => {
-       let divtyping= document.getElementById("typingchat")
-       if (divtyping!=null){
-        var parent = divtyping.parentNode;
-        parent.removeChild(divtyping);
-       }
-    }, 1000);
+        console.log("je suis dans le settimeout 2");
+        let divtyping = document.getElementById("typingchat")
+        if (divtyping != null) {
+            var parent = divtyping.parentNode;
+            parent.removeChild(divtyping);
+        }
+    }, 3000);
 }
