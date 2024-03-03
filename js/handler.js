@@ -55,9 +55,9 @@ const fetchCookies = (user) => {
     dataJson.Object = "SessionExpired"
     dataJson.Data = user
     fetch("/", {
-        method: "POST",
-        body: JSON.stringify(dataJson)
-    })
+            method: "POST",
+            body: JSON.stringify(dataJson)
+        })
         .then(response => response.json())
         .then(data => {
             SendData();
@@ -91,9 +91,9 @@ const Decon = () => {
     deconStruct.Data = newUser
 
     fetch("/", {
-        method: "POST",
-        body: JSON.stringify(deconStruct),
-    })
+            method: "POST",
+            body: JSON.stringify(deconStruct),
+        })
         .then(response => response.json())
         .then(data => {
             // Gère la réponse du serveur
@@ -115,7 +115,7 @@ const IdLikePost = (Id) => {
 
 const AddComment = (Id) => {
     currentId = Id;
-    document.getElementById(`CommentForm ${currentId}`).addEventListener("submit", function (event) {
+    document.getElementById(`CommentForm ${currentId}`).addEventListener("submit", function(event) {
         event.preventDefault();
         var comment = document.getElementsByName(`Comment ${currentId}`)[0];
         var commentId = currentId;
@@ -127,9 +127,9 @@ const AddComment = (Id) => {
         newDataJSON.Data = newCom
         comment.value = ""
         fetch("/", {
-            method: "POST",
-            body: JSON.stringify(newDataJSON),
-        })
+                method: "POST",
+                body: JSON.stringify(newDataJSON),
+            })
             .then(response => response.json())
             .then(data => {
                 // Gère la réponse du serveur
@@ -153,13 +153,12 @@ const AddComment = (Id) => {
                 // Gère les erreurs, le cas échéant
             });
 
-        //SendData()
     })
 }
 
 const LikePOst = (Id) => {
     currentId = Id
-    // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
+        // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
     var like_PostId = currentId.toString()
 
     var newLike = LikePost
@@ -170,15 +169,15 @@ const LikePOst = (Id) => {
     newDataJSON.Data = newLike
 
     fetch("/", {
-        method: "POST",
-        body: JSON.stringify(newDataJSON),
-    })
+            method: "POST",
+            body: JSON.stringify(newDataJSON),
+        })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
             SendData()
-            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-            //document.getElementById("likesCount").innerText = data.likes.toString();
+                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+                //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -191,7 +190,7 @@ const LikePOst = (Id) => {
 
 const LikeCom = (Id) => {
     currentId = Id
-    // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
+        // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
     var like_ComId = currentId.toString()
 
     var newLike = LikeComs
@@ -202,15 +201,15 @@ const LikeCom = (Id) => {
     newDataJSON.Data = newLike
 
     fetch("/", {
-        method: "POST",
-        body: JSON.stringify(newDataJSON),
-    })
+            method: "POST",
+            body: JSON.stringify(newDataJSON),
+        })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
             SendData()
-            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-            //document.getElementById("likesCount").innerText = data.likes.toString();
+                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+                //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -223,7 +222,7 @@ const LikeCom = (Id) => {
 
 const DisLikeCom = (Id) => {
     currentId = Id
-    // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
+        // document.getElementById(`LikeForm ${currentId}`).addEventListener("submit", function(event) {
     var like_ComId = currentId.toString()
 
     var newLike = LikeComs
@@ -234,16 +233,16 @@ const DisLikeCom = (Id) => {
     newDataJSON.Data = newLike
 
     fetch("/", {
-        method: "POST",
-        body: JSON.stringify(newDataJSON),
-    })
+            method: "POST",
+            body: JSON.stringify(newDataJSON),
+        })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
 
             SendData()
-            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-            //document.getElementById("likesCount").innerText = data.likes.toString();
+                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+                //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
@@ -266,22 +265,20 @@ const DisLikePOst = (Id) => {
     newDataJSON.Data = newDisLike
 
     fetch("/", {
-        method: "POST",
-        body: JSON.stringify(newDataJSON),
-    })
+            method: "POST",
+            body: JSON.stringify(newDataJSON),
+        })
         .then(response => response.json())
         .then(data => {
             // Traiter la réponse du serveur
             SendData()
-            // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
-            //document.getElementById("likesCount").innerText = data.likes.toString();
+                // Mettre à jour l'interface utilisateur avec le nombre de likes, par exemple :
+                //document.getElementById("likesCount").innerText = data.likes.toString();
         })
         .catch(error => {
             console.error("Error:", error);
             // Gère les erreurs, le cas échéant
         });
-
-    // })
 }
 
 function Tri(list) {
@@ -358,71 +355,71 @@ function ListUser(abcUser, lastuser) {
     return newTab
 }
 
-const NewPage = async (data) => {
-    Allpost = data.Posts
-    mysession = getCookie("session")
-    currentPage = "index"
-    Allsessions = data.Allsessions
-    myMsg = data.MyMsg
-    //info user
-    newUser.Id = getUser(data.Allsessions).Id;
-    newUser.Username = getUser(data.Allsessions).Username;
-    newUser.Lastname = getUser(data.Allsessions).Lastname;
-    newUser.Nickname = getUser(data.Allsessions).Nickname;
-    newUser.Age = getUser(data.Allsessions).Age;
-    newUser.Genre = getUser(data.Allsessions).Genre;
-    newUser.Mdp = getUser(data.Allsessions).Mdp;
-    newUser.Email = getUser(data.Allsessions).Email;
-    newUser.Actif = getUser(data.Allsessions).Actif;
-    newUser.Role = getUser(data.Allsessions).Role;
-    newUser.Error = getUser(data.Allsessions).Error;
-    var userConn = data.Users
-    var noms = Tri(data.Users)
-    data.Users = noms
-    let userg = data.MyMsg
-    if (userg != null) {
-        var trienoms = TriByFirstMsg(newUser, data.MyMsg)
-        userConn = ListUser(noms, trienoms)
-    }
-    const index = userConn.findIndex(user => user.Nickname === newUser.Nickname);
-    if (index !== -1) {
-        userConn.splice(index, 1);
-    }
-    //init All param
+const NewPage = async(data) => {
+        Allpost = data.Posts
+        mysession = getCookie("session")
+        currentPage = "index"
+        Allsessions = data.Allsessions
+        myMsg = data.MyMsg
+            //info user
+        newUser.Id = getUser(data.Allsessions).Id;
+        newUser.Username = getUser(data.Allsessions).Username;
+        newUser.Lastname = getUser(data.Allsessions).Lastname;
+        newUser.Nickname = getUser(data.Allsessions).Nickname;
+        newUser.Age = getUser(data.Allsessions).Age;
+        newUser.Genre = getUser(data.Allsessions).Genre;
+        newUser.Mdp = getUser(data.Allsessions).Mdp;
+        newUser.Email = getUser(data.Allsessions).Email;
+        newUser.Actif = getUser(data.Allsessions).Actif;
+        newUser.Role = getUser(data.Allsessions).Role;
+        newUser.Error = getUser(data.Allsessions).Error;
+        var userConn = data.Users
+        var noms = Tri(data.Users)
+        data.Users = noms
+        let userg = data.MyMsg
+        if (userg != null) {
+            var trienoms = TriByFirstMsg(newUser, data.MyMsg)
+            userConn = ListUser(noms, trienoms)
+        }
+        const index = userConn.findIndex(user => user.Nickname === newUser.Nickname);
+        if (index !== -1) {
+            userConn.splice(index, 1);
+        }
+        //init All param
 
-    var hidden = "";
-    var Mylike = "";
-    var isConnected = "";
-    var NbrLike = 0;
-    var NbrPost = 0;
-    var NbrCom = 0;
-    //Verifier si la taille de l'utilisateur est null ou non
-    if (newUser.Username.length == 0) {
-        hidden = "hidden";
-        Mylike = "hidden"
-    }
+        var hidden = "";
+        var Mylike = "";
+        var isConnected = "";
+        var NbrLike = 0;
+        var NbrPost = 0;
+        var NbrCom = 0;
+        //Verifier si la taille de l'utilisateur est null ou non
+        if (newUser.Username.length == 0) {
+            hidden = "hidden";
+            Mylike = "hidden"
+        }
 
-    //Verifier si la taille de Isconnected est null ou non
-    if (newUser.Username.length > 0) {
-        isConnected = "hidden";
-    }
-    if (data.Mylike != null) {
-        NbrLike = data.Mylike.length
-    }
-    if (data.MyCom != null) {
-        NbrCom = data.MyCom.length
-    }
-    if (data.MyPost != null) {
-        NbrPost = data.MyPost.length
-    }
-    var oldSection = document.querySelector("body > section");
-    if (oldSection !== null) {
-        oldSection.remove();
-        closeChatBox()
-    }
+        //Verifier si la taille de Isconnected est null ou non
+        if (newUser.Username.length > 0) {
+            isConnected = "hidden";
+        }
+        if (data.Mylike != null) {
+            NbrLike = data.Mylike.length
+        }
+        if (data.MyCom != null) {
+            NbrCom = data.MyCom.length
+        }
+        if (data.MyPost != null) {
+            NbrPost = data.MyPost.length
+        }
+        var oldSection = document.querySelector("body > section");
+        if (oldSection !== null) {
+            oldSection.remove();
+            closeChatBox()
+        }
 
-    var section = document.createElement("section")
-    section.innerHTML = `
+        var section = document.createElement("section")
+        section.innerHTML = `
         <nav>
         <div class="container">
             <a id="update">
@@ -1191,7 +1188,7 @@ const ChatBox = (Client, MyUsername) => {
     document.getElementById("Id" + Client).addEventListener("click", function (event) {
         SendData2(Client, MyUsername);
     })
-    document.getElementById("msginput" + Client).addEventListener("keydown", function (event) {
+    document.getElementById("msginput" + Client).addEventListener("keyup", function (event) {
         typing(socket, newUser.Nickname, Client)
     })
 
@@ -1319,161 +1316,162 @@ function MsgNotSee(Client) {
 
 const LoadData = async (data) => {
     if (data.Receiver != null) {
+        console.log("typing realtime : ",data);
         if (data.Receiver == newUser.Nickname) {
             TypeRealTime(data)
-            return
         }
-        return
-    }
-    var allpost = data.Posts
-    var allcom = data.Coms
-    var userConn = data.Users
-    var noms = Tri(userConn)
-    if (data.MyMsg != null) {
-        var trienoms = TriByFirstMsg(newUser, data.MyMsg)
-        userConn = ListUser(noms, trienoms)
-    }
-    const index = userConn.findIndex(user => user.Nickname === newUser.Nickname);
-    if (index !== -1) {
-        userConn.splice(index, 1);
-    }
-    myMsg = data.MyMsg
-    // //test2
-    var test2 = document.getElementById("test2");
-    if (test2 != null) {
-        test2.innerHTML = ` ${userConn.map(user => {
-            var backgroundColor = user.Actif === 'true' ? 'green' : '#858785';
-            return `<h1 onclick="ChatBox('${user.Nickname}', '${newUser.Nickname}')" > <img src="/static/images/avatar.jpeg" width="38" height="38" style="border-radius: 50%; cursor: pointer;" alt="" > <span id="profil" width="20" style="color: #070606;bottom: 12px; ">
-                               ${user.Nickname} </h1> <div class="numero" id="typing${user.Nickname}"></div> <div class="numero" id="lenMsg${user.Nickname}"></div> <div id="ligne" style=" height: 12px; width: 6%; border-radius: 6px; background-color: ${backgroundColor};"></div></span>`
-        }).join('<br/>')}`;
-    }
-
-    //msg
-    var contentMsg = document.getElementById("divMsgInput" + clients)
-    if (contentMsg != null) {
-        let msg = FilterMsg(clients, numberOfScroll)
-        if (msg.length > 0) {
-            contentMsg.innerHTML = '';
-            // Parcourir chaque message et l'ajouter au conteneur de messages
-            msg.forEach(e => {
-                const messageDiv = document.createElement('div');
-                var classeur = e.MyUsernames === newUser.Nickname ? 'message right' : 'ChatReceive left'
-                messageDiv.className = classeur;
-                var timer = e.CreatedMsg;
-                timer = timer.replace("T", " ").replace("Z", "");
-                e.CreatedMsg = timer;
-                messageDiv.textContent = `${e.CreatedMsg}\n${e.MyUsernames} : ${e.Msg}`;
-                contentMsg.appendChild(messageDiv);
-
-                // Ajouter des sauts de ligne
-                for (let i = 0; i < 3; i++) {
-                    contentMsg.appendChild(document.createElement('br'));
-                }
-                if ((e.Lu != "true") && (e.MyUsernames != newUser.Nickname)) {
-                    let dataJson = DataJson
-                    dataJson.Object = "UpdateMsg"
-                    dataJson.Data = e
-                    fetch("/", {
-                        method: "POST",
-                        body: JSON.stringify(dataJson)
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            myMsg = data.MyMsg
-                            data.Users.map(user => { MsgNotSee(user.Nickname) })
-                        })
-                        .catch(data => {
-
-                        })
-                }
-
-            });
-
-
-        } else {
-            contentMsg.innerHTML = `Empty message`
+    }else{
+        console.log("j'ai recu des données : ",data);
+        var allpost = data.Posts
+        var allcom = data.Coms
+        var userConn = data.Users
+        var noms = Tri(userConn)
+        if (data.MyMsg != null) {
+            var trienoms = TriByFirstMsg(newUser, data.MyMsg)
+            userConn = ListUser(noms, trienoms)
         }
-        contentMsg.scrollTop = contentMsg.scrollHeight;
-
-        contentMsg.addEventListener("scroll", function (event) {
-            if (this.scrollTop === 0) {
-                let chat = document.getElementsByClassName("loader")[0]
-                if (chat == null) {
-                    var loader = document.createElement("div")
-                    loader.className = "loader"
-                    contentMsg.append(loader)
-                    contentMsg.scrollTop = 0;
-                    // Récupération du premier enfant de l'élément parent (s'il en a un)
-                    var firstChild = contentMsg.firstChild;
-                    contentMsg.insertBefore(loader, firstChild)
-                    throttledLoadNewMessages()
-                }
+        const index = userConn.findIndex(user => user.Nickname === newUser.Nickname);
+        if (index !== -1) {
+            userConn.splice(index, 1);
+        }
+        myMsg = data.MyMsg
+        // //test2
+        var test2 = document.getElementById("test2");
+        if (test2 != null) {
+            test2.innerHTML = ` ${userConn.map(user => {
+                var backgroundColor = user.Actif === 'true' ? 'green' : '#858785';
+                return `<h1 onclick="ChatBox('${user.Nickname}', '${newUser.Nickname}')" > <img src="/static/images/avatar.jpeg" width="38" height="38" style="border-radius: 50%; cursor: pointer;" alt="" > <span id="profil" width="20" style="color: #070606;bottom: 12px; ">
+                                   ${user.Nickname} </h1> <div class="numero" id="typing${user.Nickname}"></div> <div class="numero" id="lenMsg${user.Nickname}"></div> <div id="ligne" style=" height: 12px; width: 6%; border-radius: 6px; background-color: ${backgroundColor};"></div></span>`
+            }).join('<br/>')}`;
+        }
+    
+        //msg
+        var contentMsg = document.getElementById("divMsgInput" + clients)
+        if (contentMsg != null) {
+            let msg = FilterMsg(clients, numberOfScroll)
+            if (msg.length > 0) {
+                contentMsg.innerHTML = '';
+                // Parcourir chaque message et l'ajouter au conteneur de messages
+                msg.forEach(e => {
+                    const messageDiv = document.createElement('div');
+                    var classeur = e.MyUsernames === newUser.Nickname ? 'message right' : 'ChatReceive left'
+                    messageDiv.className = classeur;
+                    var timer = e.CreatedMsg;
+                    timer = timer.replace("T", " ").replace("Z", "");
+                    e.CreatedMsg = timer;
+                    messageDiv.textContent = `${e.CreatedMsg}\n${e.MyUsernames} : ${e.Msg}`;
+                    contentMsg.appendChild(messageDiv);
+    
+                    // Ajouter des sauts de ligne
+                    for (let i = 0; i < 3; i++) {
+                        contentMsg.appendChild(document.createElement('br'));
+                    }
+                    if ((e.Lu != "true") && (e.MyUsernames != newUser.Nickname)) {
+                        let dataJson = DataJson
+                        dataJson.Object = "UpdateMsg"
+                        dataJson.Data = e
+                        fetch("/", {
+                            method: "POST",
+                            body: JSON.stringify(dataJson)
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                myMsg = data.MyMsg
+                                data.Users.map(user => { MsgNotSee(user.Nickname) })
+                            })
+                            .catch(data => {
+    
+                            })
+                    }
+    
+                });
+    
+    
+            } else {
+                contentMsg.innerHTML = `Empty message`
             }
-        })
-    }
-    data.Users.map(user => { MsgNotSee(user.Nickname) })
-
-    var tablikePost = []
-    var tabDislikePost = []
-    //likepost
-    var likePost = document.querySelectorAll("#likesCount")
-    //dislikepost
-    var dislikePost = document.querySelectorAll("#dislikesCount")
-    if (likePost.length != 0) {
-        likePost.forEach((e, i) => {
-            let id = e.getAttribute('value')
-            tablikePost.push(allpost[(allpost.length - 1) - (id - 1)])
-        })
-    }
-
-    if (dislikePost.length != 0) {
-        dislikePost.forEach((e, i) => {
-            let id = e.getAttribute('value')
-            tabDislikePost.push(allpost[(allpost.length - 1) - (id - 1)])
-        })
-    }
-    if (likePost.length != 0) {
-        tablikePost.forEach((e, i) => {
-            likePost[i].innerHTML = e.N_like
-        })
-    }
-
-    if (dislikePost.length != 0) {
-        tabDislikePost.forEach((e, i) => {
-            dislikePost[i].innerHTML = e.N_dislike
-        })
-    }
-
-    var likeCom = document.querySelectorAll("#ComCount")
-    var dislikeCom = document.querySelectorAll("#disComCount")
-
-    var tabLikeCom = []
-    var tabDisLikeCom = []
-
-    if (likeCom.length != 0) {
-        likeCom.forEach(function (element) {
-            let id = element.getAttribute('value'); // Récupère la valeur de l'attribut 'value'
-            tabLikeCom.push(allcom[id - 1]);
-        });
-    }
-
-    if (dislikeCom.length != 0) {
-        dislikeCom.forEach(function (element) {
-            let id = element.getAttribute('value'); // Récupère la valeur de l'attribut 'value'
-            tabDisLikeCom.push(allcom[id - 1]);
-        });
-    }
-
-    if (likeCom.length != 0) {
-        tabLikeCom.forEach((e, i) => {
-            likeCom[i].innerHTML = e.N_like
-        })
-    }
-
-    if (dislikeCom.length != 0) {
-        tabDisLikeCom.forEach((e, i) => {
-            dislikeCom[i].innerHTML = e.N_dislike
-        })
+            contentMsg.scrollTop = contentMsg.scrollHeight;
+    
+            contentMsg.addEventListener("scroll", function (event) {
+                if (this.scrollTop === 0) {
+                    let chat = document.getElementsByClassName("loader")[0]
+                    if (chat == null) {
+                        var loader = document.createElement("div")
+                        loader.className = "loader"
+                        contentMsg.append(loader)
+                        contentMsg.scrollTop = 0;
+                        // Récupération du premier enfant de l'élément parent (s'il en a un)
+                        var firstChild = contentMsg.firstChild;
+                        contentMsg.insertBefore(loader, firstChild)
+                        throttledLoadNewMessages()
+                    }
+                }
+            })
+        }
+        data.Users.map(user => { MsgNotSee(user.Nickname) })
+    
+        var tablikePost = []
+        var tabDislikePost = []
+        //likepost
+        var likePost = document.querySelectorAll("#likesCount")
+        //dislikepost
+        var dislikePost = document.querySelectorAll("#dislikesCount")
+        if (likePost.length != 0) {
+            likePost.forEach((e, i) => {
+                let id = e.getAttribute('value')
+                tablikePost.push(allpost[(allpost.length - 1) - (id - 1)])
+            })
+        }
+    
+        if (dislikePost.length != 0) {
+            dislikePost.forEach((e, i) => {
+                let id = e.getAttribute('value')
+                tabDislikePost.push(allpost[(allpost.length - 1) - (id - 1)])
+            })
+        }
+        if (likePost.length != 0) {
+            tablikePost.forEach((e, i) => {
+                likePost[i].innerHTML = e.N_like
+            })
+        }
+    
+        if (dislikePost.length != 0) {
+            tabDislikePost.forEach((e, i) => {
+                dislikePost[i].innerHTML = e.N_dislike
+            })
+        }
+    
+        var likeCom = document.querySelectorAll("#ComCount")
+        var dislikeCom = document.querySelectorAll("#disComCount")
+    
+        var tabLikeCom = []
+        var tabDisLikeCom = []
+    
+        if (likeCom.length != 0) {
+            likeCom.forEach(function (element) {
+                let id = element.getAttribute('value'); // Récupère la valeur de l'attribut 'value'
+                tabLikeCom.push(allcom[id - 1]);
+            });
+        }
+    
+        if (dislikeCom.length != 0) {
+            dislikeCom.forEach(function (element) {
+                let id = element.getAttribute('value'); // Récupère la valeur de l'attribut 'value'
+                tabDisLikeCom.push(allcom[id - 1]);
+            });
+        }
+    
+        if (likeCom.length != 0) {
+            tabLikeCom.forEach((e, i) => {
+                likeCom[i].innerHTML = e.N_like
+            })
+        }
+    
+        if (dislikeCom.length != 0) {
+            tabDisLikeCom.forEach((e, i) => {
+                dislikeCom[i].innerHTML = e.N_dislike
+            })
+        }
     }
 
 }
@@ -1652,7 +1650,6 @@ const login = () => {
                 // Gère les erreurs, le cas échéant
             });
 
-        //SendData()
     });
 }
 
@@ -1822,7 +1819,6 @@ const register = () => {
                 // Gère les erreurs, le cas échéant
                 console.error("Error:", error);
             });
-        //SendData()
     })
 
 }
@@ -1865,8 +1861,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (GetUrl() == "") {
         // Votre code ici
         if (getCookie("session") != null) {
-            //SendData()
-            //socket.addEventListener('message', async(event) => {
             fetch("/", {
                 method: "POST",
                 body: JSON.stringify(update)
@@ -1953,7 +1947,6 @@ const TypeRealTime = async (data) => {
     var typing = document.getElementById(`typing${data.Sender}`);
     if (test2 != null) {
         test2.style.display = "none"
-        typing.textContent = ""
         typing.textContent = `${data.Sender}${data.Msg}`
     }
     var contentMsg = document.getElementById("divMsgInput" + clients)
@@ -1974,10 +1967,15 @@ const TypeRealTime = async (data) => {
             idTyping = null
             console.log("je suis dans le settimeout");
         }
-    }, 3000);
+    }, 1000);
 }
 
+var idAnimationMsg;
+
 const animationMessage = (chat) => {
+    if(idAnimationMsg!=null){
+        clearTimeout(idAnimationMsg)
+    }
     // Création des éléments
     const typingAnimation = document.createElement('div');
     typingAnimation.id = "typingchat"
@@ -1991,12 +1989,13 @@ const animationMessage = (chat) => {
 
     // Ajout de l'animation au corps du document
     chat.appendChild(typingAnimation);
-    setTimeout(() => {
+    idAnimationMsg= setTimeout(() => {
         console.log("je suis dans le settimeout 2");
         let divtyping = document.getElementById("typingchat")
         if (divtyping != null) {
             var parent = divtyping.parentNode;
             parent.removeChild(divtyping);
         }
-    }, 3000);
+        idAnimationMsg=null
+    }, 1000);
 }

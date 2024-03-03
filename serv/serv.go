@@ -709,6 +709,15 @@ func HandlerWebsocket(w http.ResponseWriter, r *http.Request) {
 					if string(p) == "update" {
 						update(w, r)
 					} else {
+						// Le message est de type texte
+						var newMsg structs.MsgSend
+						if err := json.Unmarshal(p, &newMsg); err != nil {
+							fmt.Println("Erreur de deserialisation", err)
+						} else {
+							bd.NewMesg(BD, newMsg)
+							// Envoi des données au format JSON via WebSocket!
+							update(w, r)
+						}
 						var typing structs.Typing
 						if err := json.Unmarshal(p, &typing); err != nil {
 							fmt.Println("je ne suis pas dans le typing")
@@ -726,15 +735,7 @@ func HandlerWebsocket(w http.ResponseWriter, r *http.Request) {
 								}
 							}
 						}
-						// Le message est de type texte
-						var newMsg structs.MsgSend
-						if err := json.Unmarshal(p, &newMsg); err != nil {
-							fmt.Println("Erreur de deserialisation", err)
-						} else {
-							bd.NewMesg(BD, newMsg)
-							// Envoi des données au format JSON via WebSocket!
-							update(w, r)
-						}
+
 					}
 				case websocket.BinaryMessage:
 					// Le message est de type binaire
