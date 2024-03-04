@@ -714,24 +714,28 @@ func HandlerWebsocket(w http.ResponseWriter, r *http.Request) {
 						if err := json.Unmarshal(p, &newMsg); err != nil {
 							fmt.Println("Erreur de deserialisation", err)
 						} else {
-							bd.NewMesg(BD, newMsg)
-							// Envoi des données au format JSON via WebSocket!
-							update(w, r)
+							if newMsg.MyUsernames != ""{
+								bd.NewMesg(BD, newMsg)
+								// Envoi des données au format JSON via WebSocket!
+								update(w, r)
+							}
 						}
 						var typing structs.Typing
 						if err := json.Unmarshal(p, &typing); err != nil {
 							fmt.Println("je ne suis pas dans le typing")
 						} else {
-							jsonData, err := json.Marshal(typing)
-							if err != nil {
-								// Gérer l'erreur de manière appropriée
-								return
-							}
-							for _, conn := range connection {
-								err := conn.WriteMessage(websocket.TextMessage, jsonData)
+							if typing.Sender != ""{
+								jsonData, err := json.Marshal(typing)
 								if err != nil {
 									// Gérer l'erreur de manière appropriée
-									break
+									return
+								}
+								for _, conn := range connection {
+									err := conn.WriteMessage(websocket.TextMessage, jsonData)
+									if err != nil {
+										// Gérer l'erreur de manière appropriée
+										break
+									}
 								}
 							}
 						}
